@@ -6,7 +6,7 @@ function DashBoard() {
     return(
         <div className="DashBoard">
             <AsideNab msg={msg}/>
-            <Contenedor msg={msg}/>
+            <Contenedor />
         </div>
     )
 }

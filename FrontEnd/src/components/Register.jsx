@@ -1,4 +1,4 @@
-import BotonIniiciar from "./BotonIniciar"
+import BotonCancelar from "./BotonCancelar"
 import BotonRegistrar from "./BotonRegistrar"
 import Logo from "./Logo"
 
@@ -102,7 +102,7 @@ function Register() {
                                         </div>
                                     </div>
                                     <div className="modal-footer col-12 d-flex justify-content-end p-1">
-                                        <BotonIniiciar />
+                                        <BotonCancelar />
                                         <BotonRegistrar msg={msg}/>
                                     </div>
                                 </form>
