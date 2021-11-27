@@ -1,11 +1,10 @@
-const express=require("express");
+import express from "express";
 const router = express.Router();
 
-const users=require("../models/users");
-const adminusuarios=require("../models/adminusuarios");
-const reservas=require("../models/reservas");
-const parqueadero=require("../models/parqueadero");
-
+import usuarios from "../models/usuarios";
+import parqueadero from "../models/parqueadero";
+import celdasCarro from "../models/celdasCarro";
+import celdasMoto from '../models/celdasMoto';
 
 // agregar parqueadero
 
@@ -91,13 +90,13 @@ router.put('/parqueadero/:id', async (req, res) => {
   }
 });
 
-// agregar Adminusuario post
+// agregar usuarios post
 
-router.post("/adminusuarios-nuevo", async (req, res) => {
+router.post("/usuarios-nuevo", async (req, res) => {
   const body = req.body;
   try {
-    const adminusuariosDb = await adminusuarios.create(body);
-    res.status(200).json(adminusuariosDb);
+    const usuariosDb = await usuarios.create(body);
+    res.status(200).json(usuariosDb);
   } catch (error) {
     return res.status(500).json({
       mensaje: "ocurrio un error",
@@ -106,13 +105,13 @@ router.post("/adminusuarios-nuevo", async (req, res) => {
   }
 });
 
-// Get con Adminusuarios parámetros
+// Get con usuarios parámetros
 
-router.get('/adminusuarios/:id', async (req, res) => {
+router.get('/usuarios/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const adminusuariosDb = await adminusuarios.findOne({ _id });
-    res.json(adminusuariosDb);
+    const usuariosDb = await usuarios.findOne({ _id });
+    res.json(usuariosDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -121,12 +120,12 @@ router.get('/adminusuarios/:id', async (req, res) => {
   }
 });
 
-// Get con todos los documentos Adminusuario
+// Get con todos los documentos usuarios
 
-router.get('/adminusuarios', async (req, res) => {
+router.get('/usuarios', async (req, res) => {
   try {
-    const adminusuariosDb = await adminusuarios.find();
-    res.json(adminusuariosDb);
+    const usuariosDb = await usuarios.find();
+    res.json(usuariosDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -135,19 +134,19 @@ router.get('/adminusuarios', async (req, res) => {
   }
 });
 
-// Delete eliminar un usuario Adminusuarios
+// Delete eliminar un usuarios
 
-router.delete('/adminusuarios/:id', async (req, res) => {
+router.delete('/usuarios/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const adminusuariosDb = await adminusuarios.findByIdAndDelete({ _id });
-    if (!adminusuariosDb) {
+    const usuariosDb = await usuarios.findByIdAndDelete({ _id });
+    if (!usuariosDb) {
       return res.status(400).json({
         mensaje: 'No se encontró el id indicado',
         error
       })
     }
-    res.json(adminusuariosDb);
+    res.json(usuariosDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -156,17 +155,17 @@ router.delete('/adminusuarios/:id', async (req, res) => {
   }
 });
 
-// Put actualizar un usuario Adminusuario
+// Put actualizar un usuarios
 
-router.put('/adminusuarios/:id', async (req, res) => {
+router.put('/usuarios/:id', async (req, res) => {
   const _id = req.params.id;
   const body = req.body;
   try {
-    const adminusuariosDb = await adminusuarios.findByIdAndUpdate(
+    const usuariosDb = await usuarios.findByIdAndUpdate(
       _id,
       body,
       { new: true });
-    res.json(adminusuariosDb);
+    res.json(usuariosDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -175,13 +174,13 @@ router.put('/adminusuarios/:id', async (req, res) => {
   }
 });
 
-// agregar reservas
+// agregar celdasCarro post
 
-router.post("/reservas-nuevo", async (req, res) => {
+router.post("/celdasCarro-nuevo", async (req, res) => {
   const body = req.body;
   try {
-    const reservasDb = await reservas.create(body);
-    res.status(200).json(reservasDb);
+    const celdasCarroDb = await celdasCarro.create(body);
+    res.status(200).json(celdasCarroDb);
   } catch (error) {
     return res.status(500).json({
       mensaje: "ocurrio un error",
@@ -190,13 +189,13 @@ router.post("/reservas-nuevo", async (req, res) => {
   }
 });
 
-// Get con parametro reservas
+// Get con celdasCarro parámetros
 
-router.get('/reservas/:id', async (req, res) => {
+router.get('/celdasCarro/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const reservasDb = await reservas.findOne({ _id });
-    res.json(reservasDb);
+    const celdasCarroDb = await celdasCarro.find({ idParqueadero:_id });
+    res.json(celdasCarroDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -205,12 +204,12 @@ router.get('/reservas/:id', async (req, res) => {
   }
 });
 
-// Get con todos los elementos reservas
+// Get con todos los documentos celdasCarro
 
-router.get('/reservas', async (req, res) => {
+router.get('/celdasCarro', async (req, res) => {
   try {
-    const reservasDb = await reservas.find();
-    res.json(reservasDb);
+    const celdasCarroDb = await celdasCarro.find();
+    res.json(celdasCarroDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -219,19 +218,19 @@ router.get('/reservas', async (req, res) => {
   }
 });
 
-// Delete una reservas
+// Delete eliminar un celdasCarro
 
-router.delete('/reservas/:id', async (req, res) => {
+router.delete('/celdasCarro/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const reservasDb = await reservas.findByIdAndDelete({ _id });
-    if (!reservasDb) {
+    const celdasCarroDb = await celdasCarro.findByIdAndDelete({ _id });
+    if (!celdasCarroDb) {
       return res.status(400).json({
         mensaje: 'No se encontró el id indicado',
         error
       })
     }
-    res.json(reservasDb);
+    res.json(celdasCarroDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -240,17 +239,17 @@ router.delete('/reservas/:id', async (req, res) => {
   }
 });
 
-// Actualizar una reservas
+// Put actualizar un celdasCarro
 
-router.put('/reservas/:id', async (req, res) => {
+router.put('/celdasCarro/:id', async (req, res) => {
   const _id = req.params.id;
   const body = req.body;
   try {
-    const reservasDb = await reservas.findByIdAndUpdate(
+    const celdasCarroDb = await celdasCarro.findByIdAndUpdate(
       _id,
       body,
       { new: true });
-    res.json(reservasDb);
+    res.json(celdasCarroDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -259,13 +258,13 @@ router.put('/reservas/:id', async (req, res) => {
   }
 });
 
-// Agregar a users 
+// agregar celdasMoto post
 
-router.post("/users-nuevo", async (req, res) => {
+router.post("/celdasMoto-nuevo", async (req, res) => {
   const body = req.body;
   try {
-    const usersDb = await users.create(body);
-    res.status(200).json(usersDb);
+    const celdasMotoDb = await celdasMoto.create(body);
+    res.status(200).json(celdasMotoDb);
   } catch (error) {
     return res.status(500).json({
       mensaje: "ocurrio un error",
@@ -274,13 +273,13 @@ router.post("/users-nuevo", async (req, res) => {
   }
 });
 
-// Get con parametros users
+// Get con celdasMoto parámetros
 
-router.get('/users/:id', async (req, res) => {
+router.get('/celdasMoto/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const usersDb = await users.findOne({ _id });
-    res.json(usersDb);
+    const celdasMotoDb = await celdasMoto.find({ idParqueadero:_id });
+    res.json(celdasMotoDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -289,12 +288,12 @@ router.get('/users/:id', async (req, res) => {
   }
 });
 
-// Get con todos los documentos users
+// Get con todos los documentos celdasMoto
 
-router.get('/users', async (req, res) => {
+router.get('/celdasMoto', async (req, res) => {
   try {
-    const usersDb = await users.find();
-    res.json(usersDb);
+    const celdasMotoDb = await celdasMoto.find();
+    res.json(celdasMotoDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -303,19 +302,19 @@ router.get('/users', async (req, res) => {
   }
 });
 
-// Delete un usuario users
+// Delete eliminar un celdasMoto
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/celdasMoto/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const usersDb = await users.findByIdAndDelete({ _id });
-    if (!usersDb) {
+    const celdasMotoDb = await celdasMoto.findByIdAndDelete({ _id });
+    if (!celdasMotoDb) {
       return res.status(400).json({
         mensaje: 'No se encontró el id indicado',
         error
       })
     }
-    res.json(usersDb);
+    res.json(celdasMotoDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -324,17 +323,17 @@ router.delete('/users/:id', async (req, res) => {
   }
 });
 
-// Put actualizar un usuario users
+// Put actualizar un celdasMoto
 
-router.put('/users/:id', async (req, res) => {
+router.put('/celdasMoto/:id', async (req, res) => {
   const _id = req.params.id;
   const body = req.body;
   try {
-    const usersDb = await users.findByIdAndUpdate(
+    const celdasMotoDb = await celdasMoto.findByIdAndUpdate(
       _id,
       body,
       { new: true });
-    res.json(usersDb);
+    res.json(celdasMotoDb);
   } catch (error) {
     return res.status(400).json({
       mensaje: 'Ocurrio un error',
@@ -342,7 +341,5 @@ router.put('/users/:id', async (req, res) => {
     })
   }
 });
-
-
 
 module.exports = router;

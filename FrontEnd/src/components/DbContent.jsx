@@ -4,9 +4,8 @@ import logica from "../logica/logica"
 import PanelCorto from "./PanelCorto"
 import PanelLargo from "./PanelLargo"
 
-function DbContent() {
+function DbContent({arr}) {
     
-    var arr=logica.getUserLogged().split(",")
     const [celdasCarro, setCeldasCarro] = useState(logica.getCeldasCarro(arr[1]))
 
     return (

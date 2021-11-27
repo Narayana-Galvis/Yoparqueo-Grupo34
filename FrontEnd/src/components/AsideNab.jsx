@@ -2,12 +2,11 @@ import Logo from "./Logo"
 import { Link } from "react-router-dom";
 import logica from "../logica/logica";
 
-function AsideNab({msg}) {
+function AsideNab({msg, arr}) {
     const cerrarSesion =()=>{
         logica.deleteUserLogged()
     }
-    var user =logica.getUserLogged()
-    var arr=user.split(",")
+
     var admin
     if (arr[3]==="Administrador") {
         admin =true

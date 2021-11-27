@@ -1,9 +1,8 @@
-const mongoose=require("mongoose");
+import mongoose from "mongoose";
 const schema=mongoose.Schema;
 
 var parqueaderoschema = new schema({
-    usuario:String,
-    password:String,
+    
     nombre_parqueadero:String,
     nit:String,
     correo:String,
@@ -11,15 +10,12 @@ var parqueaderoschema = new schema({
     ciudad:String,
     celular:Number,
     horario:String,
-    valorHoraFraccion:Number,
-    date: { type: Date, default: Date.now },
-    activo: { type: Boolean, default: true },
-    celdas_carro:Number,
-    celdas_moto:Number,
+    valorHoraFraccion:Number
 
 });
 
 //
 
 
-module.exports = mongoose.model("parqueadero",parqueaderoschema);
+const parqueadero = mongoose.model("parqueadero",parqueaderoschema);
+export default parqueadero;

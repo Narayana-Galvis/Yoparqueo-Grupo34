@@ -3,14 +3,14 @@ import NabBar from "./NabBar"
 import PieDePagina from "./PieDePagina"
 
 
-function Contenedor() {
+function Contenedor({arr}) {
     return(
         <div className="Container">
             <div className="position-fixed w-85 p-0 margen-left">
-                <NabBar />
+                <NabBar arr={arr} />
             </div>
             <div className="margen-top position-fixed w-85 col p-0 margen-left">
-                <DbContent />
+                <DbContent arr={arr} />
             </div>
             <PieDePagina />
         </div>

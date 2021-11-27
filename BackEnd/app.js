@@ -1,7 +1,7 @@
-const express= require('express');
-const morgan =require('morgan');
-const cors=require('cors');
-const path=require('path');
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import path from 'path';
 require ("dotenv").config();
 const app = express();
 
@@ -9,10 +9,10 @@ const app = express();
 
 const mongoose = require('mongoose');
 
-
+const uri =process.env.uri;
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
-mongoose.connect("mongodb+srv://yoparqueo:y0parq30@adminparq.1yxnk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", options).then(
+mongoose.connect(uri, options).then(
     
     () => {console.log('Conectado a DB AdminParq')},
     
@@ -23,15 +23,6 @@ mongoose.connect("mongodb+srv://yoparqueo:y0parq30@adminparq.1yxnk.mongodb.net/m
 
 app.use(morgan("tiny"));
 app.use(cors());
-
-app.use((req, res, next)=>{
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, ContentType,Accept");
-  res.header('Access-Control-Allow-Methods','GET,POST,OPTIONS,PUT,DELETE');
-  res.header('Allow','GET,POST,OPTIONS,PUT,DELETE');
-  next();
-});
-
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }))
@@ -39,7 +30,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // rutas
 
-app.use("/api", require("./routes/users"));
+app.use("/api", require("./routes/routes"));
 
 
 // Middleware para Vue.js router modo history
@@ -51,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // puertos
 
 app.set( "puerto",process.env.PORT || 3000 );
-app.listen(app.get("puerto"), () => {
+app.listen(app.get("puerto"),function(){
 
     console.log(" el servdor esta escuchando por el puerto "+ app.get("puerto"));
 

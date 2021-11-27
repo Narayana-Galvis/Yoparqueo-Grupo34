@@ -5,9 +5,9 @@ export default function PanelVehiculo({msg, celdasCarro}) {
         return (
                <div className="d-flex flex-wrap justify-content-center">
                     {
-                        celdasCarro.map(celda=>{
+                        // celdasCarro.map(celda=>{
                             
-                        })
+                        // })
                     }
                 </div> 
         )   

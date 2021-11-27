@@ -1,10 +1,6 @@
 import imgPark from "../assets/img/icono-parqueadero.png"
-import logica from "../logica/logica"
 
-function NabBar() {
-    
-    var user= logica.getUserLogged()
-    let arr=user.split(",")
+function NabBar({arr}) {
     
     return(
         <div className="NabBar">
