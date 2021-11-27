@@ -1,7 +1,15 @@
 import Login from "../components/Login";
 import Register from "../components/Register";
 import fondo from "../assets/img/cars-in-the-parking-lot-in-row.jpg"
+import { AgregarUsuario } from "../components/AgregarUsuario";
+import { useState } from "react";
+import CeldasParqueo from "../components/CeldasParqueo";
 function Home() {
+    
+    const [parqueadero, setParqueadero] = useState([])
+
+    const home = true
+
     return (
         <div className="Home">
             <div className="position-fixed">
@@ -13,8 +21,9 @@ function Home() {
             <div className="position-fixed h-100 ml-75 w-25">
                 <Login />
             </div>
-            
-            <Register />
+            <Register setParqueadero={setParqueadero} />
+            <AgregarUsuario parqueadero={parqueadero} home={home}/>
+            <CeldasParqueo parqueadero={parqueadero} />
         </div>
     )
 }

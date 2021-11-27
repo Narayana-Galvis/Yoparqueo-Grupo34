@@ -1,5 +1,7 @@
 import AsideNab from "../components/AsideNab"
 import Contenedor from "../components/Contenedor";
+import Facturar from "../components/Facturar";
+import IngresarModal from "../components/IngresarModal";
 
 function DashBoard() {
     const msg="board"
@@ -7,6 +9,8 @@ function DashBoard() {
         <div className="DashBoard">
             <AsideNab msg={msg}/>
             <Contenedor />
+            <Facturar />
+            <IngresarModal />
         </div>
     )
 }

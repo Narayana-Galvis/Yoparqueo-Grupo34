@@ -9,7 +9,7 @@ function Contenedor() {
             <div className="position-fixed w-85 p-0 margen-left">
                 <NabBar />
             </div>
-            <div className="margen-top position-fixed col p-0 margen-left">
+            <div className="margen-top position-fixed w-85 col p-0 margen-left">
                 <DbContent />
             </div>
             <PieDePagina />

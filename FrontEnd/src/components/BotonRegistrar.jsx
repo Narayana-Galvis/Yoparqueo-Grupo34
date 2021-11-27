@@ -2,7 +2,7 @@ function BotonRegistrar({msg}) {
     if (msg==="submit") {
         return(
             <div className="BotonRegistrar">
-                <button type="submit" class="btn btn-primary text-white rounded-pill"  data-bs-dismiss="modal">Registrar parqueadero</button>
+                <button type="submit" className="btn btn-primary text-white rounded-pill" data-bs-toggle="modal" data-bs-target="#agregarModal">Registrar parqueadero</button>
             </div>
         )
     } else {

@@ -1,9 +1,54 @@
+import { useState } from "react"
 import BotonCancelar from "./BotonCancelar"
 import BotonRegistrar from "./BotonRegistrar"
 import Logo from "./Logo"
+import logica from "../logica/logica.js"
 
-function Register() {
+const initialFormValues={
+    correo: "",
+    celular: "",
+    nit: "",
+    nombre_parqueadero: "",
+    direccion: "",
+    ciudad: "",
+    horario: "",
+    valorHoraFraccion: "",
+}
+
+function Register({setParqueadero}) {
+
+    const [formValues, setFormValues] = useState(initialFormValues)
+
+    const {correo, celular, nit, nombre_parqueadero, direccion, ciudad, horario, valorHoraFraccion}=formValues
+
+    const inputChange= (e) => {
+
+        const changedFormValues = {
+            ...formValues,
+            [e.target.name] : e.target.value
+        } 
+
+        setFormValues(changedFormValues)
+    }
+
+    const formSubmit= async e =>{
+        e.preventDefault();
+        try {
+            await logica.register(formValues)
+            .then(res=>{
+                setParqueadero(res.data)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+        const changedFormValues = {
+            ...initialFormValues
+        }
+        setFormValues(changedFormValues)
+      }
+
     const msg="submit"
+
     return(
         <div className="Register">
             <div className="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
@@ -18,77 +63,130 @@ function Register() {
                                 <Logo msg="home"/>
                             </div>
                             <div className="container-fluid p-2">
-                                <form className="row g-2">
+                                <form onSubmit={formSubmit} className="row g-2">
                                     <div className="col-md-4">
-                                        <label for="nombre_usuario" className="form-label">Nombre Usuario</label>
+                                        <label 
+                                        for="email" 
+                                        className="form-label">
+                                            Correo Electrónico
+                                        </label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control" id="nombre_usuario" placeholder="Nombre Usuario" v-model="usuario" required/>
+                                            <input 
+                                            type="email" 
+                                            className="form-control" 
+                                            id="email" 
+                                            required
+                                            name="correo"
+                                            onChange={inputChange}
+                                            value={correo} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label for="contraseña" className="form-label">Contraseña</label>
+                                        <label 
+                                        for="celular" 
+                                        className="form-label">
+                                            Celular
+                                        </label>
                                         <div className="input-group">
-                                            <input type="current-password" className="form-control" id="contraseña" placeholder="Contraseña" v-model="password" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="#confirmarContraseña" class="form-label">Confirmar contraseña</label>
-                                        <div className="input-group">
-                                            <input v-model="passwordRepeat" type="current-password" class="form-control" id="confirmarContraseña" required placeholder="Contraseña"/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <label for="email" className="form-label">Correo Electrónico</label>
-                                        <div className="input-group">
-                                            <input type="email" className="form-control" id="email" v-model="correo" required/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <label for="celular" className="form-label">Celular</label>
-                                        <div className="input-group">
-                                            <input type="number" className="form-control" id="celular" placeholder="Celular" v-model="celular" required/>
+                                            <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            id="celular" 
+                                            placeholder="Celular" 
+                                            required
+                                            name="celular"
+                                            onChange={inputChange}
+                                            value={celular} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label for="nit" className="form-label">NIT</label>
+                                        <label 
+                                        for="nit" 
+                                        className="form-label">
+                                            NIT
+                                        </label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control" id="nit" placeholder="NIT" v-model="nit" required/>
+                                            <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="nit" 
+                                            placeholder="NIT" 
+                                            required
+                                            name="nit"
+                                            onChange={inputChange}
+                                            value={nit} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label for="nombre_parqueadero" className="form-label">Nombre Parqueadero</label>
+                                        <label 
+                                        for="nombre_parqueadero" 
+                                        className="form-label">
+                                            Nombre Parqueadero
+                                        </label>
                                         <div className="input-group">
                                             <div className="input-group-text"><i className="fas fa-parking"></i></div>
-                                            <input type="text" className="form-control" id="nombre_parqueadero" placeholder="Nombre Parqueadero" v-model="nombre_parqueadero" required/>
+                                            <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="nombre_parqueadero" 
+                                            placeholder="Nombre Parqueadero" 
+                                            required
+                                            name="nombre_parqueadero"
+                                            onChange={inputChange}
+                                            value={nombre_parqueadero} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label for="direccion" className="form-label">Dirección Parqueadero</label>
+                                        <label 
+                                        for="direccion" 
+                                        className="form-label">
+                                            Dirección Parqueadero
+                                        </label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control" id="direccion" placeholder="Dirección Parqueadero" v-model="direccion" required/>
+                                            <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="direccion" 
+                                            placeholder="Dirección Parqueadero" 
+                                            required
+                                            name="direccion"
+                                            onChange={inputChange}
+                                            value={direccion} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label for="ciudad" className="form-label">Ciudad</label>
+                                        <label 
+                                        for="ciudad" 
+                                        className="form-label">
+                                            Ciudad
+                                        </label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control" id="ciudad" placeholder="Ciudad" v-model="ciudad" required/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <label for="celdas_carro" className="form-label">Celdas totales carro</label>
-                                        <div className="input-group">
-                                            <input type="number" className="form-control" id="celdas_carro" placeholder="No. celdas carros" v-model="celdas_carro" required/>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <label for="celdas_moto" className="form-label">Celdas totales moto</label>
-                                        <div className="input-group">
-                                            <input type="number" className="form-control" id="celdas_moto" placeholder="No. celdas motos" v-model="celdas_moto"/>
+                                            <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="ciudad" 
+                                            placeholder="Ciudad" 
+                                            required
+                                            name="ciudad"
+                                            onChange={inputChange}
+                                            value={ciudad} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-3">
                                         <label className="form-label" for="#horario">Horario Parqueadero</label>
-                                        <select className="form-select" id="horario" v-model="horario">
+                                        <select 
+                                        className="form-select"
+                                         id="horario"
+                                          name="horario"
+                                           onChange={inputChange}
+                                           value={horario}
+                                           >
                                             <option selected>Seleccionar...</option>
                                             <option value="24 horas">24 horas</option>
                                             <option value="8:00 AM - 5:00 PM">8:00 AM - 5:00 PM</option>
@@ -98,7 +196,16 @@ function Register() {
                                     <div className="col-md-3">
                                         <label for="tarifa" className="form-label">Valor Hora Fracción</label>
                                         <div className="input-group">
-                                            <input type="number" className="form-control" id="tarifa" placeholder="Valor Hora Fracción" v-model="valorHoraFraccion" required/>
+                                            <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            id="tarifa" 
+                                            placeholder="Valor Hora Fracción" 
+                                            required
+                                            name="valorHoraFraccion"
+                                            onChange={inputChange}
+                                            value={valorHoraFraccion} 
+                                            />
                                         </div>
                                     </div>
                                     <div className="modal-footer col-12 d-flex justify-content-end p-1">
