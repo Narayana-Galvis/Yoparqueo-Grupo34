@@ -1,0 +1,240 @@
+
+    const [url, setUrl] = useState({tipo:'GET',url:'http://localhost:3000/api/CeldasMoto/'});
+    const [datos, setDatos] = useState({});
+  const [respuestaAPI, setRespuestaAPI] = useState({ respuesta: 'KO' });
+
+    useEffect(() => {
+        const consultaAPI = async () => {
+          const consulta = await axios({ url });
+     
+          setRespuestaAPI(consulta);
+        };
+     
+        consultaAPI();
+      }, []);
+     
+      const MostrarRespuesta = () => {
+        return Object.keys(respuestaAPI).map(key => {
+          return (
+            <div key={key}>
+              {key}: {JSON.stringify(respuestaAPI[key])}
+            </div>
+          );
+        });
+      };
+     
+    
+
+
+
+    function actual() {
+        let fecha=new Date(); //Actualizar fecha.
+        let hora=fecha.getHours(); //hora actual
+        let minuto=fecha.getMinutes(); //minuto actual
+        let segundo=fecha.getSeconds(); //segundo actual
+        if (hora<10) { //dos cifras para la hora
+        hora="0"+hora;
+        }
+        if (minuto<10) { //dos cifras para el minuto
+        minuto="0"+minuto;
+        }
+        if (segundo<10) { //dos cifras para el segundo
+        segundo="0"+segundo;
+        }
+        //ver en el recuadro del reloj:
+        let mireloj = hora+" : "+minuto+" : "+segundo;
+        return mireloj;
+    }
+
+   // hora=actual()
+
+ function  calculotiempo(hora){
+    let cal=Date.parse(hora)
+    return cal
+ }
+
+function horaingreso(){
+     let H= 9
+    //  let M=10
+    //  let S=10
+     let time=H //+':'+M+':'+S
+     return (time)
+
+ }
+
+ function tiemporecorrido(){
+    const birthday = new Date();
+    const minu=((birthday.getHours()-this.horaingreso())*60)*(2000/60)
+    //const M=((birthday.getMinutes()))
+   const  fraccion= minu.toFixed()
+    
+return fraccion ;
+ }
+
+ //-----------------------consulta-trae todas las celdas carros y motos------------------------
+
+    // state={
+    //     celdas:[
+            
+    //     ]
+    // }
+
+    // async componentDidMount() {
+         
+    //    const respuesta1=await Axios.get('http://localhost:3000/api/CeldasMoto/');
+    //    const respuesta2=await Axios.get('http://localhost:3000/api/CeldasCarro/');
+
+    //    this.setState({users: respuesta1.data})
+    //    this.setState({users2: respuesta2.data})
+    //   console.log(this.state);
+    // //console.log(this.state.celdas.date);
+
+    // }
+
+
+
+
+    ////----------------------cardar datos especificos
+
+//     state={
+//         data:[]
+//     }
+// cargardata(){
+//     // new Vue({
+//         // el: '#app',
+//         // data () {
+//         //   return {
+//         //     info: null
+//         //   }
+//         // },
+//         // mounted () {
+//           Axios
+//             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+//             .then(response => (this.info = response))
+        // }
+    //   })
+     
+    
+    
+   
+// }
+
+//________________________________________________________________________________________
+
+   
+    // render() {
+
+    return (
+       
+
+        <div className="FacturarModal">
+            <div className="modal fade" id="facturaModal" tabindex="-1" aria-labelledby="facturaModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content p-3">
+                        <div className="modal-header p-1">
+                            <h3 className="text-primary m-0">Facturar</h3>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body p-1">
+                            <div className="container-fluid p-1">
+                                <form  className="row g-2">
+                                    <div className="row">
+                                        <div className="col-md-12 text-center">
+                                            <p className="m-0">Régimen simplificado<br/>
+                                            Nombre representante: Leo Parqueo <br/>
+                                            Nit: 900532084 <br/>
+                                            Dirección: cra89 #31-68 <br/>
+                                            Teléfono: 3006183669</p>
+                                        </div>
+                                        <hr/>
+                                        <div className="row">
+                                        <div className="col-md-12">
+                                            <span className="text-muted">Placa</span>
+                                            <p className="m-0 fs-4 fw-bolder">kjp86b</p>
+                                            <hr/>
+                                        </div>
+                                        <div className="col-md-12">
+                                        <div class="form-check">
+                                              <div className="col-md-4">
+                                                  form user
+                                              </div>
+                                              <div className="col-md-8">
+                                                  <ul className="list-group">
+                                                      
+                                                  </ul>
+                                              </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="radio" 
+                                                    name="flexRadioDefault" 
+                                                    id="radioCarro"
+                                                    onChange={'' }
+                                                />
+                                                <label class="form-check-label" for="radioCarro">
+                                                    Carro
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="radio" 
+                                                    name="flexRadioDefault" 
+                                                    id="radioMoto"
+                                                    onChange={''}
+                                                />
+                                                <label class="form-check-label" for="radioMoto">
+                                                    Moto
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                        <hr />
+                                           
+                                            <div className="col-md-6">
+                                                <span className="text-muted">Hora de ingreso</span>
+                                                <p className="m-0 fs-6 fw-bolder">{this.horaingreso()}</p>
+                                                <hr/>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <span className="text-muted">Hora salida</span>
+                                                <p className="m-0 fs-6 fw-bolder">{calculotiempo}</p>
+                                                <hr/>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <span className="text-muted">Precio hora/Fraccion</span>
+                                                <p className="m-0 fs-6 fw-bolder">2000</p>
+                                                <hr/>
+                                            </div> 
+                                            <div className="col-md-6">
+                                                <span className="text-muted">Valor a pagar</span>
+                                                <p className="m-0 fs-6 fw-bolder">{this.tiemporecorrido()}</p>
+                                                <hr/>
+                                            </div>
+                                           
+                                            <div className="modal-footer col-12 d-flex justify-content-end p-1">
+                                              
+                                                <button 
+                                                type="submit" 
+                                                className="btn btn-primary bg-primary text-white rounded-pill"
+                                                 data-bs-dismiss="modal"
+                                                 onClick={''}
+                                                 >Imprimir factura</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+    )
+}
+// }
+ let d= new Date();
+ console.log(d.getHours())

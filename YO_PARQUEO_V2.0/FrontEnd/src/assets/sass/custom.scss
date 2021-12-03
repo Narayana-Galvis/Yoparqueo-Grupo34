@@ -1,0 +1,266 @@
+$primary: #FF6600;
+$secondary: #003EA8;
+$light: #D1E1EC;
+$dark:  #E7F0F6;
+$success: #61AB00;
+$info: #008A29;
+$warning: #FCCA00;
+$nav-tabs-link-active-color: #000;
+$nav-tabs-link-active-bg:#fff;
+$component-active-color: #fff;
+$component-active-bg: $secondary;
+$link-color: $secondary;
+$link-hover-color: $primary;
+
+#placa input[type=text] {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 8px;
+	box-sizing: border-box;
+	background-color: rgba(255, 255, 255, 0);
+	border-bottom: 2px solid #000 !important;
+	border: 0;
+	border-radius: 0px;
+	font-size: 40px;
+	font-family: 'Anton', sans-serif;
+	text-align: center;
+	color: #000;
+	text-transform: uppercase;
+	outline: none;
+	font-size: 25px;
+}
+
+.input-text {
+	border: #AEC1CE 1px solid !important;
+	border-radius: 50px!important;
+	width: 350px;
+	height: 40px;
+	padding: 0 17px 0 17px;
+}
+
+#selector {
+	box-shadow: 5px 5px 10px rgba(51, 75, 117, 0.2);
+	display: flex;
+	width: inherit;
+	border: solid 1px #AEC1CE;
+	border-radius: 50px;
+}
+
+#selector li {
+	padding: 10px;
+	display: inline-block;
+}
+
+#selector li:nth-child(even) {
+	border-right: solid 2px #AEC1CE;
+}
+
+#selector li a {
+	color: #AEC1CE !important;
+}
+
+#selector li a.activo {
+	color: #0044AA !important;
+}
+.imagen_carro_ocupado {
+	background-image: url("../img/ocupado-carro.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.imagen_carro_disponible {
+	background-image: url("../img/disponible-carro.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.imagen_moto_ocupado {
+	background-image: url("../img/ocupado-motos.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.imagen_moto_disponible {
+	background-image: url("../img/disponible-motos.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.id_parqueadero {
+	color: #fff;
+	position: flex;
+	font-size: 30px;
+	font-weight: 700;
+	z-index: 1;
+	font-family: 'Anton', sans-serif;
+	text-shadow: 1px 1px 1px rgba(51, 75, 117, 0.5);
+}
+
+.contenedor-panel-largo {
+	box-shadow: 5px 5px 10px rgba(51, 75, 117, 0.2);
+}
+
+.contenedor-items :nth-child(odd) {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.item-panel {
+	width: 22%;
+	height: 130px;
+	box-shadow: 5px 5px 10px rgba(51, 75, 117, 0.2);
+}
+
+.fuente-reloj {
+	font-size: 40px;
+	width: 100%;
+	font-family: 'Anton', sans-serif;
+  text-align: center;
+}
+
+.fuente-vehiculo {
+	font-size: 40px;
+	width: 100%;
+	font-family: 'Anton', sans-serif;
+  text-align: center;
+}
+
+.item-panel div {
+	display: block;
+}
+
+.margen-left{
+	margin-left: 15% !important;
+}
+
+.ml-75{
+	margin-left: 75% !important;
+}
+
+.w-15{
+	width: 15% !important;
+}
+
+.w-85{
+	width: 85% !important;
+}
+
+.margen-top{
+	margin-top: 78px !important;
+}
+
+.rounded-20{
+	border-radius: 20px;
+}
+
+.roundedtriangulo{
+	border-top-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.mt-100{
+	margin-top: 100px !important;
+}
+
+.btn-primary {
+	border: none;
+}
+
+.rounded-4{
+	border-radius: 15px;
+}
+.w-101{
+	width: 100px;
+}
+
+.w-400{
+	width: 400px;
+}
+
+.wh-100{
+	width: 100px;
+	height: 100px;
+}
+
+.h-500{
+	height: 520px;
+}
+
+.h-200{
+	height: 200px;
+}
+
+.h-400{
+	height: 400px;
+}
+
+.h-350{
+	height: 320px;
+}
+
+.h-130{
+  height: 130px;
+}
+
+.btn-primary:hover {
+    color: #fff !important;
+	background-color: #003EA8 !important;
+    border: none;
+}
+
+.btn-info:hover {
+    color: #fff !important;
+	background-color: #003EA8 !important;
+    border: none;
+}
+
+.btn-outline-primary:hover {
+	background-color: #003EA8 !important;
+	border: 1px solid #003EA8 !important;
+}
+
+.btn-outline-info:hover {
+	background-color: #003EA8 !important;
+	border: 1px solid #003EA8 !important;
+}
+
+.navbar-custom {
+	box-shadow: 5px 5px 10px rgba(51, 75, 117, 0.2);
+	padding: 10px 0 10px 0;
+}
+
+body {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+}
+
+h1,
+h2,
+h4,
+h3 {
+	font-family: 'Anton', sans-serif;
+	font-weight: 300;
+}
+
+.contenedor {
+	align-content: center;
+	box-shadow: 5px 5px 10px rgba(51, 75, 117, 0.2);
+	border-radius: 15px;
+}
+
+.footer {
+	text-align: center;
+	padding: 20px;
+	position: fixed;
+	bottom: 0;
+}
+
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
