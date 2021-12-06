@@ -1,10 +1,10 @@
-import express from "express";
+const express=require("express");
 const router = express.Router();
 
-import usuarios from "../models/usuarios";
-import parqueadero from "../models/parqueadero";
-import celdasCarro from "../models/celdasCarro";
-import celdasMoto from '../models/celdasMoto';
+const usuarios=require("../models/usuarios");
+const parqueadero=require("../models/parqueadero");
+const celdasCarro=require("../models/celdasCarro");
+const celdasMoto=require('../models/celdasMoto');
 
 // agregar parqueadero
 
@@ -111,6 +111,19 @@ router.get('/usuarios/:id', async (req, res) => {
   const _id = req.params.id;
   try {
     const usuariosDb = await usuarios.findOne({ _id });
+    res.json(usuariosDb);
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: 'Ocurrio un error',
+      error
+    })
+  }
+});
+
+router.get('/usuarios-usuario/:id', async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const usuariosDb = await usuarios.find({ usuario:_id });
     res.json(usuariosDb);
   } catch (error) {
     return res.status(400).json({

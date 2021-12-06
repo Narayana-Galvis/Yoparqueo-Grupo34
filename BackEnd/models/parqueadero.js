@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose=require("mongoose");
 const schema=mongoose.Schema;
 
 var parqueaderoschema = new schema({
@@ -17,5 +17,4 @@ var parqueaderoschema = new schema({
 //
 
 
-const parqueadero = mongoose.model("parqueadero",parqueaderoschema);
-export default parqueadero;
+module.exports = mongoose.model("parqueadero",parqueaderoschema);

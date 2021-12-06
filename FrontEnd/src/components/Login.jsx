@@ -13,7 +13,6 @@ const initialFormValues={
 function Login() {
     var val2 = false
     var users =[]
-    var parqueadero=[]
     var userLogged=[]
     const [error, setError] = useState(false)
 
@@ -46,18 +45,16 @@ function Login() {
                     users.forEach(element => {
                         if (usuario===element.usuario) {
                             if (password===element.password) {
+                
+                                userLogged={
+
+                                    user:element.usuario,
+                                    idparq:element.idParqueadero,
+
+                                }
+
+                                logica.setUserLogged(userLogged)
                                 
-                                logica.getParqueadero(element.idParqueadero)
-                                .then(res=>{
-                                    parqueadero=res.data
-                                    userLogged=[
-                                        element.usuario,
-                                        element.idParqueadero,
-                                        parqueadero.nombre_parqueadero,
-                                        element.tipo
-                                    ]
-                                    logica.setUserLogged(userLogged)
-                                })
                                 window.location.href="/DashBoard"
                             }else {
                                 setError(true);

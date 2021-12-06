@@ -13,11 +13,14 @@ export default {
         return axios.post("/celdasCarro-nuevo",parqueadero); 
     },
     getCeldasCarro(id){
-        return axios.get(`/parqueadero/${id}`)
+        return axios.get(`/celdasCarro/${id}`)
     },
     regCeldasMoto(celda){
         const parqueadero=celda;
         return axios.post("/celdasMoto-nuevo",parqueadero); 
+    },
+    getCeldasMoto(id){
+        return axios.get(`/celdasMoto/${id}`)
     },
     getParqueadero(id){
         return axios.get(`/parqueadero/${id}`)
@@ -30,13 +33,31 @@ export default {
         const usuario=formValues;
         return axios.get("/usuarios",usuario); 
     },
-    setUserLogged(userLogged) {
-        Cookies.set("userLogged", userLogged);
+    getUser(id){
+        return axios.get(`/usuarios/${id}`)
+    },
+    getUs(usuario){
+        return axios.get(`/usuarios-usuario/${usuario}`)
+    },
+    putCeldasCarro(id,celda){
+        return axios.put(`/celdasCarro/${id}`,celda)
+    },
+    putCeldasMoto(id,celda){
+        return axios.put(`/celdasMoto/${id}`,celda)
+    },
+    setUserLogged(userlogged) {
+        Cookies.set("user", userlogged.user);
+        Cookies.set("idparq", userlogged.idparq);
     },
     getUserLogged() {
-        return Cookies.get("userLogged");
+        const usuario = {
+            user : Cookies.get("user"),
+            idparq : Cookies.get("idparq"),
+        }
+        return usuario
     },
     deleteUserLogged() {
-        Cookies.remove('userLogged');
+        Cookies.remove("idparq")
+        Cookies.remove("user")
     }
 }

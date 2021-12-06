@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose=require("mongoose");
 const schema=mongoose.Schema;
 
 const celdasMotoschema=new schema({
@@ -14,5 +14,4 @@ const celdasMotoschema=new schema({
 
 // convertir a modelo
 
-const celdasMoto = mongoose.model("celdasMoto",celdasMotoschema);
-export default celdasMoto;
+module.exports = mongoose.model("celdasMoto",celdasMotoschema);

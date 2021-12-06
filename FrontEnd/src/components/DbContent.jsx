@@ -1,12 +1,9 @@
-
-import { useState } from "react"
-import logica from "../logica/logica"
 import PanelCorto from "./PanelCorto"
 import PanelLargo from "./PanelLargo"
 
-function DbContent({arr}) {
+function DbContent({celdasCarro, celdasMoto}) {
     
-    const [celdasCarro, setCeldasCarro] = useState(logica.getCeldasCarro(arr[1]))
+    
 
     return (
         <div className="DbContent">
@@ -16,8 +13,8 @@ function DbContent({arr}) {
                         <PanelCorto msg="Date"/>
                         <PanelCorto msg="Carro"/>
                         <PanelCorto msg="Moto"/>
-                        <PanelCorto msg="Placa" setCeldasCarro={setCeldasCarro}/>
-                        <PanelLargo msg="Carro" celdasCarro={celdasCarro}/>
+                        <PanelCorto msg="Placa"/>
+                        <PanelLargo msg="Carro" celdasCarro={celdasCarro} celdasMoto={celdasMoto} />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="v-pills-Casillero" role="tabpanel" aria-labelledby="v-pills-Casillero-tab">

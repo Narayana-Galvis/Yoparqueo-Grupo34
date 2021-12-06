@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PanelVehiculo from "./PanelVehiculo";
 
-export default function PanelLargo({msg}) {
+export default function PanelLargo({msg, celdasCarro, celdasMoto}) {
     
     const [vehiculo, setVehiculo] = useState(msg)
 
@@ -34,7 +34,7 @@ export default function PanelLargo({msg}) {
                     </li>
                     </ul>
                 </div>
-                <PanelVehiculo msg={vehiculo} />
+                <PanelVehiculo msg={vehiculo} celdasCarro={celdasCarro} celdasMoto={celdasMoto} />
             </div>
         </div>
     )
